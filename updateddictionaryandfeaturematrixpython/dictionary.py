@@ -20,10 +20,3 @@ class DictionaryBuilder(object):
         
         return dictionary
 
-def main():
-    db = DictionaryBuilder();
-    dictionary = db.dictionary
-    #print "Found %i tokens in the corpus, of which %i were unique" % (dictionary.num_pos, len(dictionary))
-    print dictionary
-if __name__ == "__main__":
-    main()
