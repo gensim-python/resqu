@@ -25,7 +25,7 @@ def get_pmids():
 	   pmid = line.split()[2].strip()
 	   #running an external command
            #Setting the shell argument to a true value causes subprocess to start an intermediate shell process, and tell it to run the command. 
-           subprocess.call(["wget http://www.ncbi.nlm.nih.gov/pubmed/", pmid], shell=True)
+           subprocess.call(["wget http://www.ncbi.nlm.nih.gov/pubmed/"+pmid], shell=True)
            # print("%s\t%s" % (line, int(pmid)))
            pmids.append(pmid)
    # print(pmids)
