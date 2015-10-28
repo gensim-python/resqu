@@ -17,7 +17,6 @@ def get_pmids():
    #Initialize pmids as a list
    pmids = list()
    pmids_file = os.path.join(BASEDIR, 'data', 'PMIDS_IN_DATASET')
-   # print(pmids_file)
    #opening file for reading in binary mode
    with open(pmids_file, "rb") as f:
        lines = f.readlines()

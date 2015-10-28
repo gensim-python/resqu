@@ -62,8 +62,6 @@ print
 print "STEP 1 : Index and vectorize"
 print '-'*10
 
-# create dictionary (index of each element)
-
 #Dictionary creation using gensim library
 dictionary = corpora.Dictionary(line.lower().split() for line in open(filepath,"r"))
 #words that occuring only once
