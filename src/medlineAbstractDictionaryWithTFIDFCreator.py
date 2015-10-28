@@ -105,8 +105,8 @@ print "STEP 3 : Creating similarity matrix of all files"
 print '-'*10
 index = similarities.MatrixSimilarity(tfidf[corpus])
 print "Computing similarities from the TF-IDF corpus : %s"%type(index)
-index.save('abstract_with_GS.index')
-index = similarities.MatrixSimilarity.load('abstract_with_GS.index')
+index.save('abstracts_with_GS.index')
+index = similarities.MatrixSimilarity.load('abstracts_with_GS.index')
 
 sims = index[corpus_tfidf]
 print "Get a similarity matrix for all documents in the corpus %s"% type(sims)
