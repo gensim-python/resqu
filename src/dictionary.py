@@ -16,7 +16,7 @@ class DictionaryBuilder(object):
             for line in lines:
                 doc = line  #.split() #doc as bag of words (bow) of tokens in this line            
                 dictionary.add_documents([doc])
-        //infile.close()
+        #infile.close()
         
         return dictionary
 
