@@ -2,7 +2,7 @@ from gensim.corpora import Dictionary
 
 class DictionaryBuilder(object):
 
-    def __init__(self, dictionary=None, corpus_file="citations-all.txt"):
+    def __init__(self, dictionary=None, corpus_file="/home/nishita/resqu/data/abstracts_with_GS_rawText.txt"):
         if dictionary == None:
             self.dictionary = self.create_dict(corpus_file)        
         else:
@@ -16,7 +16,7 @@ class DictionaryBuilder(object):
             for line in lines:
                 doc = line  #.split() #doc as bag of words (bow) of tokens in this line            
                 dictionary.add_documents([doc])
-        infile.close()
+        //infile.close()
         
         return dictionary
 
