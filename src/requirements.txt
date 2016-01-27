@@ -1,3 +1,0 @@
-gensim
-scipy
-numpy
