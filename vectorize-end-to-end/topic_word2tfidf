@@ -1,0 +1,71 @@
+import numpy as np
+import os, json, ast
+from gensim.corpora import Dictionary
+from gensim.models import TfidfModel
+from gensim.matutils import corpus2dense
+
+
+class TfidfLoader(object):
+    def __init__(self, filepath=None,dictionary=None, tfidfmodel=None):
+        if not os.path.exists(filepath):
+            print("File does not exist %s",filepath)
+        else:
+            if not dictionary:
+                dictionary = self.load_dictionary(filepath)
+            if not tfidfmodel:
+                tdfidfmodel = TfidfLoader(dictionary=dictionary)
+
+        self._dictionary = dictionary
+        self._tfidfmodel = tdfidfmodel
+
+    def load_dictionary(self, filepath):
+        dictionary = Dictionary()
+        with open(filepath, "r") as f:
+            for line in f.readline():
+                dictionary.add_documents([[word.lower() for word in line.split()]])
+        return dictionary
+
+    @property
+    def dictionary(self):
+        return self._dictionary
+
+    @property
+    def tfidfmodel(self):
+        return self._tfidfmodel
+
+class SampleTrainingExample(object):
+        def __init__(self,context):
+            self._context = self.get_context()
+
+
+def get_training_examples(filepath):
+    tfidfloader = TfidfLoader(filepath)
+    dictionary = tfidfloader.dictionary
+    tfidfmodel = tfidfloader.tfidfmodel
+
+    corpus = list()
+    labels = list()
+    with open(filepath, "rb") as f:
+        for line in f.readlines() :
+            print line
+            # example = SampleTrainingExample(line)
+            # context = example.context
+            # label = example.label
+            words = line.lower().split()
+            doc = dictionary.doc2bow(words)
+            tfidf_doc = tfidfmodel[doc]
+            corpus.append(tfidf_doc)
+            # labels.append(label)
+
+    X = corpus2dense(corpus, num_terms=len(dictionary)).T
+    # y = np.array(labels)
+
+    return X
+
+
+if __name__ =="__main__":
+    filepath = os.path.join("..","data","sample_data.txt")
+    print("Creating the model")
+    X = get_training_examples(filepath)
+    print(X)
+    print("Number of Examples: %i\nNumber of dimensions: %i" % (X.shape[0], X.shape[1]))
